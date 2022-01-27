@@ -1,5 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
+
+int randomGenerate(vector<string>);
+
 int main() {
   fstream file;
   string word, filename;
@@ -9,8 +12,11 @@ int main() {
   while(file >> word) {
     wordList.push_back(word);
   }
-  for(int i = 0; i < wordList.size(); ++i) {
-    cout<<wordList[i]<<endl;
-  }
+  string targetWord = wordList[randomGenerate(wordList)];
   return 0;
+}
+int randomGenerate(vector<string> wordList) {
+  srand(time(NULL));
+  int wordIndex = rand() % wordList.size();
+  return wordIndex;
 }
