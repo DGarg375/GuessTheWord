@@ -41,6 +41,7 @@ int main() {
   else {
       cout<<"You guessed the right word in "<<6-remainingTries<<" tries."<<endl;
   }
+  cout<<"The target word was "<<targetWord<<"."<<endl;
   return 0;
 }
 
