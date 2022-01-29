@@ -25,14 +25,19 @@ int main() {
   while(remainingTries > 0 && guessedWord != targetWord) {
       cout<<"Enter your guess: "<<"(guesses left = "<<remainingTries<<"): ";
       cin>>guessedWord;
-      cout<<"Guess Entered: "<<endl;
-      for(int i = 0; i < guessedWord.length(); ++i) {
-          cout<<guessedWord[i]<<" ";
+      if(guessedWord.length() == 5) {
+        cout<<"Guess Entered: "<<endl;
+        for(int i = 0; i < guessedWord.length(); ++i) {
+            cout<<guessedWord[i]<<" ";
+        }
+        cout<<endl;
+        string hint = guessCheck(targetWord, guessedWord);
+        cout<<hint<<endl;
+        --remainingTries;
       }
-      cout<<endl;
-      string hint = guessCheck(targetWord, guessedWord);
-      cout<<hint<<endl;
-      --remainingTries;
+      else {
+        cout<<"You have not entered a five letter word! Please enter again."<<endl;
+      }
 
   }
   if(remainingTries > 0) {
@@ -45,15 +50,7 @@ int main() {
       cout<<"You ran out of guesses!"<<endl;
       cout<<"The target word to be guessed was: "<<targetWord<<endl;
   }
-  /*
-  if(remainingTries == 0) {
-      cout<<"You ran out of guesses!"<<endl;
-  }
-  else {
-      cout<<"You guessed the right word in "<<6-remainingTries<<" tries."<<endl;
-  }
-  cout<<"The target word was "<<targetWord<<"."<<endl;
-  */
+
   return 0;
 }
 
