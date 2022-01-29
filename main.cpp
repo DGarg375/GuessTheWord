@@ -5,8 +5,9 @@
 using namespace std;
 
 // Function headers
-int randomGenerate(vector<string>);
+int randomGenerate(vector<string> );
 string guessCheck(string , string );
+bool existCheck(string , string );
 
 int main() {
   vector<char> absentLetters;
@@ -20,23 +21,30 @@ int main() {
   }
   string targetWord = wordList[randomGenerate(wordList)];
   int remainingTries = 6;
-  string guessedWord = "aaaaa";
+  string guessedWord = "";
 
   while(remainingTries > 0 && guessedWord != targetWord) {
       cout<<"Enter your guess: "<<"(guesses left = "<<remainingTries<<"): ";
       cin>>guessedWord;
-      if(guessedWord.length() == 5) {
+      cout<<endl;
+      bool integCheck = existCheck(filename, guessedWord);
+      if(guessedWord.length() == 5 && integCheck == true) {
         cout<<"Guess Entered: "<<endl;
         for(int i = 0; i < guessedWord.length(); ++i) {
             cout<<guessedWord[i]<<" ";
         }
         cout<<endl;
         string hint = guessCheck(targetWord, guessedWord);
-        cout<<hint<<endl;
+        cout<<hint<<endl<<endl;
         --remainingTries;
       }
       else {
-        cout<<"You have not entered a five letter word! Please enter again."<<endl;
+        if(guessedWord.length() != 5) {
+          cout<<"You have not entered a five letter word! Please enter again."<<endl<<endl;
+        }
+        else if(integCheck == false) {
+          cout<<"The word you entered does not exist! Please enter again."<<endl<<endl;
+        }
       }
 
   }
@@ -52,6 +60,19 @@ int main() {
   }
 
   return 0;
+}
+
+//Checks whether word exists in the english dictionary
+bool existCheck(string filename, string guessedWord) {
+  fstream file1;
+  string word1;
+  file1.open(filename.c_str());
+  while(file1 >> word1) {
+    if(guessedWord == word1) {
+      return true;
+    }
+  }
+  return false;
 }
 
 //Generates a random index number in the range [0,wordList.size()]
