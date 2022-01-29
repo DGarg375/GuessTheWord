@@ -21,6 +21,7 @@ int main() {
   }
   string targetWord = wordList[randomGenerate(wordList)];
   int remainingTries = 6;
+  int totalPoints = 60;
   string guessedWord = "";
 
   while(remainingTries > 0 && guessedWord != targetWord) {
@@ -35,7 +36,8 @@ int main() {
         }
         cout<<endl;
         string hint = guessCheck(targetWord, guessedWord);
-        cout<<hint<<endl<<endl;
+        totalPoints -= 5;
+        cout<<hint<<"               POINTS: "<<totalPoints<<endl<<endl;
         --remainingTries;
       }
       else {
@@ -44,6 +46,8 @@ int main() {
         }
         else if(integCheck == false) {
           cout<<"The word you entered does not exist! Please enter again."<<endl<<endl;
+          totalPoints -= 1;
+          cout<<endl<<"               POINTS: "<<totalPoints<<endl<<endl;
         }
       }
 
@@ -57,8 +61,9 @@ int main() {
   else {
       cout<<"You ran out of guesses!"<<endl;
       cout<<"The target word to be guessed was: "<<targetWord<<endl;
+      totalPoints = 0;
   }
-
+  cout<<"Your total points for this game: "<<totalPoints<<endl<<endl;
   return 0;
 }
 
