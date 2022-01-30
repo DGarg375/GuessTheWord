@@ -148,4 +148,3 @@ string guessCheck(string targetWord, string guessedWord)
   }
   return result;
 }
-cout << "wow" << endl;
