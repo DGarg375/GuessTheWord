@@ -12,6 +12,7 @@ using namespace std;
 int main()
 {
   fstream file;
+  string remainingLetters = "abcdefghijklmnopqrstuvwxyz";
   string word;
   string filename = "../resources/wordList.txt";
   vector<string> wordList;
@@ -27,6 +28,13 @@ int main()
 
   while (remainingTries > 0 && guessedWord != targetWord)
   {
+    cout << "Remaining Letters: ";
+    for (int x = 0; x < remainingLetters.length(); ++x)
+    {
+      cout << remainingLetters[x] << " ";
+    }
+    cout << endl
+         << endl;
     cout << "Enter your guess: "
          << "(guesses left = " << remainingTries << "): ";
     cin >> guessedWord;
@@ -40,7 +48,7 @@ int main()
         cout << guessedWord[i] << " ";
       }
       cout << endl;
-      string hint = guessCheck(targetWord, guessedWord);
+      string hint = guessCheck(targetWord, guessedWord, remainingLetters);
       totalPoints -= 5;
       cout << hint << "               POINTS: " << totalPoints << endl
            << endl;

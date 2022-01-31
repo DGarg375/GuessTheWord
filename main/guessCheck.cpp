@@ -1,6 +1,6 @@
 #include <string>
 
-std::string guessCheck(std::string targetWord, std::string guessedWord)
+std::string guessCheck(std::string targetWord, std::string guessedWord, std::string &remainingLetters)
 {
     std::string s1 = targetWord;
     std::string s2 = guessedWord;
@@ -34,6 +34,14 @@ std::string guessCheck(std::string targetWord, std::string guessedWord)
             if (track == false)
             {
                 result = result + "_ ";
+                for (int k = 0; k < remainingLetters.length(); ++k)
+                {
+                    if (s2[i] == remainingLetters[k])
+                    {
+                        remainingLetters.erase(k, 1);
+                        break;
+                    }
+                }
             }
         }
     }
