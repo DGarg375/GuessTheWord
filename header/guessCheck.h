@@ -1,0 +1,1 @@
+std::string guessCheck(std::string, std::string);

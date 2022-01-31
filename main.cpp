@@ -1,20 +1,18 @@
 // Header files
 #include <bits/stdc++.h>
 
+#include "header/existCheck.h"
+#include "header/guessCheck.h"
+#include "header/randomGenerate.h"
 // namespaces
 using namespace std;
-
-// Function headers
-int randomGenerate(vector<string>);
-string guessCheck(string, string);
-bool existCheck(string, string);
 
 int main()
 {
   vector<char> absentLetters;
   fstream file;
-  string word, filename;
-  filename = "wordList.txt";
+  string word;
+  string filename = "wordList.txt";
   vector<string> wordList;
   file.open(filename.c_str());
   while (file >> word)
@@ -82,69 +80,4 @@ int main()
   cout << "Your total points for this game: " << totalPoints << endl
        << endl;
   return 0;
-}
-
-//Checks whether word exists in the english dictionary
-bool existCheck(string filename, string guessedWord)
-{
-  fstream file1;
-  string word1;
-  file1.open(filename.c_str());
-  while (file1 >> word1)
-  {
-    if (guessedWord == word1)
-    {
-      return true;
-    }
-  }
-  return false;
-}
-
-//Generates a random index number in the range [0,wordList.size()]
-int randomGenerate(vector<string> wordList)
-{
-  srand(time(NULL));
-  int wordIndex = rand() % wordList.size();
-  return wordIndex;
-}
-
-//Checks similarities between the target word and attempted guess word.
-string guessCheck(string targetWord, string guessedWord)
-{
-  string s1 = targetWord;
-  string s2 = guessedWord;
-  string result = "";
-  for (int i = 0; i < s1.length(); ++i)
-  {
-    if (s1[i] == s2[i])
-    {
-      s1[i] = '*';
-    }
-  }
-  for (int i = 0; i < s2.length(); ++i)
-  {
-    if (s1[i] == '*')
-    {
-      result = result + s2[i] + ' ';
-    }
-    else
-    {
-      bool track = false;
-      for (int j = 0; j < s1.length(); ++j)
-      {
-        if (s2[i] == s1[j])
-        {
-          result = result + "$ ";
-          s1[j] = '$';
-          track = true;
-          break;
-        }
-      }
-      if (track == false)
-      {
-        result = result + "_ ";
-      }
-    }
-  }
-  return result;
 }
