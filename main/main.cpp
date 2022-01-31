@@ -1,5 +1,6 @@
 // Header files
 #include <bits/stdc++.h>
+#include <stdlib.h>
 
 #include "../header/existCheck.h"
 #include "../header/guessCheck.h"
@@ -28,10 +29,23 @@ int main()
 
   while (remainingTries > 0 && guessedWord != targetWord)
   {
-    cout << "Remaining Letters: ";
+    cout << "  ";
     for (int x = 0; x < remainingLetters.length(); ++x)
     {
-      cout << remainingLetters[x] << " ";
+      if (remainingLetters[x] == ' ')
+      {
+        cout << "    ";
+      }
+      else
+      {
+        cout << "_   ";
+      }
+    }
+    cout << endl;
+    cout << "| ";
+    for (int x = 0; x < remainingLetters.length(); ++x)
+    {
+      cout << remainingLetters[x] << " | ";
     }
     cout << endl
          << endl;

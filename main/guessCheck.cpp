@@ -38,7 +38,7 @@ std::string guessCheck(std::string targetWord, std::string guessedWord, std::str
                 {
                     if (s2[i] == remainingLetters[k])
                     {
-                        remainingLetters.erase(k, 1);
+                        remainingLetters[k] = ' ';
                         break;
                     }
                 }
