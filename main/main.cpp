@@ -1,18 +1,19 @@
 // Header files
 #include <bits/stdc++.h>
 
-#include "header/existCheck.h"
-#include "header/guessCheck.h"
-#include "header/randomGenerate.h"
+#include "../header/existCheck.h"
+#include "../header/guessCheck.h"
+#include "../header/randomGenerate.h"
 // namespaces
 using namespace std;
 
+//header files
+
 int main()
 {
-  vector<char> absentLetters;
   fstream file;
   string word;
-  string filename = "wordList.txt";
+  string filename = "../resources/wordList.txt";
   vector<string> wordList;
   file.open(filename.c_str());
   while (file >> word)
