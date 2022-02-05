@@ -5,6 +5,9 @@
 #include "../header/existCheck.h"
 #include "../header/guessCheck.h"
 #include "../header/randomGenerate.h"
+#include "../header/logWrite.h"
+#include "../header/showLog.h"
+
 // namespaces
 using namespace std;
 
@@ -26,6 +29,30 @@ int main()
   int remainingTries = 6;
   int totalPoints = 60;
   string guessedWord = "";
+  string name;
+  cout << "Enter your name: ";
+  cin >> name;
+  cout << endl;
+  char choice;
+  cout << "Do you want to open log of completed words?(y/n): ";
+  cin >> choice;
+  if (choice == 'y')
+  {
+    string name2;
+    cout << "Enter your name: ";
+    cin >> name2;
+    showLog(name2);
+    cout << endl
+         << endl;
+    char choice2;
+    cout << "Do you want to play the game?(y/n): ";
+    cin >> choice2;
+    if (choice2 == 'n')
+    {
+      return 0;
+    }
+    cout << endl;
+  }
 
   while (remainingTries > 0 && guessedWord != targetWord)
   {
@@ -86,6 +113,19 @@ int main()
       }
     }
   }
+  string log = name;
+  if (guessedWord == targetWord)
+  {
+    log = log + " guessed the word " + "\"" + targetWord + "\"" + " in " + to_string(6 - remainingTries) + " tries.";
+  }
+  else
+  {
+    log = log + " could not guess the word " + "\"" + targetWord + "\"";
+  }
+
+  string logFilename = "../resources/log.txt";
+  logWrite(logFilename, log);
+
   if (remainingTries > 0)
   {
     cout << "You guessed the right word in " << 6 - remainingTries << " tries." << endl;
